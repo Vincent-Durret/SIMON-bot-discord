@@ -1,3 +1,4 @@
-/node_module
+/node_modules
 id.txt
 config.js
+test.js
