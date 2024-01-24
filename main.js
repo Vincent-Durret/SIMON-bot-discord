@@ -7,6 +7,8 @@ const {
 const { Captcha } = require("discord.js-captcha");
 const newMemberHandler = require("./security/newMemberHandler.js");
 const reactionHandler = require("./Reaction/reactionHandler");
+const { checkOrCreateRoleMessage } = require("./message/roleMessageManager");
+const config = require("./config");
 
 const bot = new Client({
   intents: [
@@ -22,6 +24,7 @@ bot.once(Events.ClientReady, () => {
   console.log(
     `Je suis reveiller! Connecter et pret a travailler ${bot.user.tag}`
   );
+  checkOrCreateRoleMessage(bot, "1198929195477245962");
 });
 
 bot.on("messageReactionAdd", (reaction, user) => {
@@ -34,7 +37,7 @@ const captcha = new Captcha(bot, {
   attempts: 3,
   roleID: "1198915078301425727",
   channelID: "1198681113397301309", //optional
-  sendToTextChannel: true,
+  sendToTextChannel: false,
   addRoleOnSuccess: true,
 });
 

@@ -4,8 +4,6 @@ const {
   EmbedBuilder,
 } = require("discord.js");
 
-const { sendRoleSelectionMessage } = require("./roleMessageSender");
-
 module.exports = async (member, captcha) => {
   console.log(`Gestion du nouveau membre : ${member.user.tag}`);
 
@@ -34,8 +32,6 @@ module.exports = async (member, captcha) => {
     } catch (error) {
       console.error("Erreur lors de l'ajout du rôle :", error);
     }
-
-    sendRoleSelectionMessage(data.member.guild);
 
     // Annoncer la réussite du CAPTCHA dans un salon spécifique
     const welcomeChannelId = "1196085171015921774"; // ID du salon d'accueil
