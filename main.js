@@ -8,7 +8,7 @@ const { Captcha } = require("discord.js-captcha");
 const newMemberHandler = require("./security/newMemberHandler.js");
 const reactionHandler = require("./Reaction/reactionHandler");
 const { checkOrCreateRoleMessage } = require("./message/roleMessageManager");
-const config = require("./config");
+// const config = require("./config");
 
 const bot = new Client({
   intents: [
@@ -47,3 +47,5 @@ bot.on("guildMemberAdd", (member) => {
 });
 
 bot.login(process.env.TOKEN);
+
+// bot.login(config.token);
