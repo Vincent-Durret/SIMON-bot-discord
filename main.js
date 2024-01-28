@@ -57,3 +57,4 @@ bot.on("guildMemberAdd", (member) => {
 bot.login(process.env.TOKEN);
 
 // bot.login(config.token);
+//test
