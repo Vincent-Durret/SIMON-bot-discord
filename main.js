@@ -9,7 +9,7 @@ const { Captcha } = require("discord.js-captcha");
 const newMemberHandler = require("./security/newMemberHandler.js");
 const reactionHandler = require("./Reaction/reactionHandler");
 const { checkOrCreateRoleMessage } = require("./message/roleMessageManager");
-const loadCommands = require("./Loaders/loadCommands.js");
+const loadSlashCommands = require("./Loaders/loadSlashCommands.js");
 // const config = require("./config");
 
 const bot = new Client({
@@ -28,7 +28,7 @@ bot.once(Events.ClientReady, () => {
   console.log(
     `Je suis reveiller! Connecter et pret a travailler ${bot.user.tag}`
   );
-  loadCommands(bot);
+  loadSlashCommands(bot);
   checkOrCreateRoleMessage(bot, "1198929195477245962");
 });
 
