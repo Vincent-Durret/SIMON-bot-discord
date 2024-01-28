@@ -3,12 +3,15 @@ const {
   GatewayIntentBits,
   EmbedBuilder,
   Events,
+  Collection,
 } = require("discord.js");
 const { Captcha } = require("discord.js-captcha");
 const newMemberHandler = require("./security/newMemberHandler.js");
 const reactionHandler = require("./Reaction/reactionHandler");
 const { checkOrCreateRoleMessage } = require("./message/roleMessageManager");
+const { loadCommands } = require("./Loaders/commandLoader");
 // const config = require("./config");
+bot.command = new Collection();
 
 const bot = new Client({
   intents: [
@@ -24,6 +27,7 @@ bot.once(Events.ClientReady, () => {
   console.log(
     `Je suis reveiller! Connecter et pret a travailler ${bot.user.tag}`
   );
+  loadCommands(bot);
   checkOrCreateRoleMessage(bot, "1198929195477245962");
 });
 
