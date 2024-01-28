@@ -11,6 +11,7 @@ const reactionHandler = require("./Reaction/reactionHandler");
 const { checkOrCreateRoleMessage } = require("./message/roleMessageManager");
 const loadCommands = require("./Loaders/loadCommands.js");
 const loadSlashCommands = require("./Loaders/loadSlashCommands.js");
+const loadEvents = require("./Loaders/loadEvents.js");
 
 // const config = require("./config");
 
@@ -32,6 +33,7 @@ bot.once(Events.ClientReady, () => {
   );
   loadCommands(bot);
   loadSlashCommands(bot);
+  loadEvents(bot);
   checkOrCreateRoleMessage(bot, "1198929195477245962");
 });
 
