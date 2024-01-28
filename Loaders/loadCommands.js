@@ -1,18 +1,15 @@
 const fs = require("fs");
+const path = require("path");
 
-module.exports = async (bot) => {
-  fs.readdirSync("./Commandes")
-    .filter((f) => f.endsWith(".js"))
-    .forEach(async (file) => {
-      let command = require(`../Commandes/${file}`);
+function loadCommands(client) {
+  const commandFiles = fs
+    .readdirSync(path.join(__dirname, "commands"))
+    .filter((file) => file.endsWith(".js"));
 
-      if (!command.name || typeof command.name !== "string")
-        throw new TypeError(
-          `La commande ${file.slice(0, file.length - 3)} n'a pas de nom !`
-        );
+  for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.name, command);
+  }
+}
 
-      bot.commands.set(command.name, command);
-
-      console.log(`Commande ${file} chargée avec succès ! `);
-    });
-};
+module.exports = { loadCommands };
