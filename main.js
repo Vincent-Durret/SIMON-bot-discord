@@ -11,7 +11,6 @@ const reactionHandler = require("./Reaction/reactionHandler");
 const { checkOrCreateRoleMessage } = require("./message/roleMessageManager");
 const { loadCommands } = require("./Loaders/loadCommands.js");
 // const config = require("./config");
-bot.command = new Collection();
 
 const bot = new Client({
   intents: [
@@ -23,6 +22,8 @@ const bot = new Client({
     GatewayIntentBits.DirectMessages,
   ],
 });
+
+bot.command = new Collection();
 bot.once(Events.ClientReady, () => {
   console.log(
     `Je suis reveiller! Connecter et pret a travailler ${bot.user.tag}`
