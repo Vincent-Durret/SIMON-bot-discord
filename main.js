@@ -9,7 +9,7 @@ const { Captcha } = require("discord.js-captcha");
 const newMemberHandler = require("./security/newMemberHandler.js");
 const reactionHandler = require("./Reaction/reactionHandler");
 const { checkOrCreateRoleMessage } = require("./message/roleMessageManager");
-const { loadCommands } = require("./Loaders/loadCommands.js");
+const loadCommands = require("./Loaders/loadCommands.js");
 // const config = require("./config");
 
 const bot = new Client({
