@@ -23,7 +23,7 @@ const bot = new Client({
   ],
 });
 
-bot.command = new Collection();
+bot.commands = new Collection();
 bot.once(Events.ClientReady, () => {
   console.log(
     `Je suis reveiller! Connecter et pret a travailler ${bot.user.tag}`
