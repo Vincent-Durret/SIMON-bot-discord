@@ -37,6 +37,7 @@ module.exports = {
         content: "Essaie pas de te bannir !",
         ephemeral: true,
       });
+      console.log("L'utilisateur essaie de ce ban");
       return;
     }
 
@@ -45,6 +46,7 @@ module.exports = {
         content: "Ne ban pas le propriétaire du serveur",
         ephemeral: true,
       });
+      console.log("Ne pas ban le proprietaire ");
       return;
     }
 
@@ -53,6 +55,7 @@ module.exports = {
         content: "Je ne peux pas bannir ce membre !",
         ephemeral: true,
       });
+      console.log("Je ne peux pas ban ce membre ");
       return;
     }
 
@@ -65,6 +68,7 @@ module.exports = {
         content: "Tu ne peux pas bannir cette personne",
         ephemeral: true,
       });
+      console.log("Je ne peux pas bannir cette utilisateur ");
       return;
     }
 
@@ -74,12 +78,16 @@ module.exports = {
         content: "Ce membre est déjà banni",
         ephemeral: true,
       });
+      console.log("Ce membre est deja ban");
       return;
     }
 
     // Envoyer un message à l'utilisateur banni, si possible
     try {
       await member.send(
+        `Tu as été banni du serveur ${interaction.guild.name} pour la raison : \`${reason}\``
+      );
+      console.log(
         `Tu as été banni du serveur ${interaction.guild.name} pour la raison : \`${reason}\``
       );
     } catch (err) {
@@ -94,5 +102,8 @@ module.exports = {
       content: `${member.user.tag} a été banni pour la raison : \`${reason}\``,
       ephemeral: true,
     });
+    console.log(
+      `${member.user.tag} a été banni pour la raison : \`${reason}\``
+    );
   },
 };
