@@ -14,9 +14,9 @@ module.exports = async (bot) => {
         command.permission === "Aucune" ? null : command.data.permission
       );
 
-    if (command.options?.length >= 1) {
-      for (let option of command.options) {
-        switch (option.type.toUpperCase()) {
+    if (command.data.options?.length >= 1) {
+      for (let option of command.data.options) {
+        switch (option.type) {
           case "STRING":
             slashCommand.addStringOption((opt) =>
               opt
