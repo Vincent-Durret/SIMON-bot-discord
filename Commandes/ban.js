@@ -98,16 +98,12 @@ module.exports = {
     // Effectuer le bannissement
     await member.ban({ reason: reason });
 
-    await interaction.editReply({
-      content: `${member.user.tag} a été banni pour la raison : \`${reason}\``,
-    });
-
     // Confirmer le bannissement
     try {
-      await interaction.reply({
+      await interaction.editReply({
         content: `${member.user.tag} a été banni pour la raison : \`${reason}\``,
-        ephemeral: true,
       });
+
       console.log(
         `${member.user.tag} a été banni pour la raison : \`${reason}\``
       );
