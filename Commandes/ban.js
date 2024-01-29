@@ -84,18 +84,38 @@ module.exports = {
     }
 
     // Envoyer un message à l'utilisateur banni, si possible
-    await interaction.editReply({
-      content: `${member.user.tag} a été banni pour la raison : \`${reason}\``,
-    });
+    try {
+      await member.send(
+        `Tu as été banni du serveur ${interaction.guild.name} pour la raison : \`${reason}\``
+      );
+      console.log(
+        `Tu as été banni du serveur ${interaction.guild.name} pour la raison : \`${reason}\``
+      );
+    } catch (err) {
+      console.error("Erreur lors de l'envoi du message de bannissement :", err);
+    }
 
     // Effectuer le bannissement
     await member.ban({ reason: reason });
 
+    await interaction.editReply({
+      content: `${member.user.tag} a été banni pour la raison : \`${reason}\``,
+    });
+
     // Confirmer le bannissement
     try {
-      await member.send(`Message de bannissement`);
+      await interaction.reply({
+        content: `${member.user.tag} a été banni pour la raison : \`${reason}\``,
+        ephemeral: true,
+      });
+      console.log(
+        `${member.user.tag} a été banni pour la raison : \`${reason}\``
+      );
     } catch (err) {
-      console.error("Erreur lors de l'envoi du message de bannissement :", err);
+      console.log(
+        `${member.user.tag} n'a  pas pu être banni pour la raison :`,
+        err
+      );
     }
   },
 };
