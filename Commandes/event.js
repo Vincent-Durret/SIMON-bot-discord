@@ -5,26 +5,26 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("createevent")
     .setDescription("Crée un nouvel événement")
-    .addStringOption((option) =>
-      option
+    .addStringOption((opt) =>
+      opt
         .setName("titre")
         .setDescription("Titre de l'événement")
         .setRequired(true)
     )
-    .addStringOption((option) =>
-      option
+    .addStringOption((opt) =>
+      opt
         .setName("date")
         .setDescription("Date de l'événement (ex: 2023-12-31)")
         .setRequired(true)
     )
-    .addStringOption((option) =>
-      option
+    .addStringOption((opt) =>
+      opt
         .setName("heure")
         .setDescription("Heure de l'événement (ex: 20:00)")
         .setRequired(true)
     )
-    .addStringOption((option) =>
-      option
+    .addStringOption((opt) =>
+      opt
         .setName("description")
         .setDescription("Description de l'événement")
         .setRequired(false)

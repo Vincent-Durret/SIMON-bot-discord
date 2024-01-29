@@ -5,14 +5,14 @@ module.exports = {
     .setName("ban")
     .setDescription("Ban un membre")
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
-    .addUserOption((option) =>
-      option
+    .addUserOption((opt) =>
+      opt
         .setName("membre")
         .setDescription("Le membre à bannir")
         .setRequired(true)
     )
-    .addStringOption((option) =>
-      option
+    .addStringOption((opt) =>
+      opt
         .setName("raison")
         .setDescription("La raison du bannissement")
         .setRequired(false)
