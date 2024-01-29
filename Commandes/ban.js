@@ -1,25 +1,23 @@
-const { PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
-  name: "ban",
-  description: "Ban un membre",
-  permission: PermissionFlagsBits.BanMembers,
-  dm: false,
-  options: [
-    {
-      type: "USER",
-      name: "membre",
-      description: "Le membre à bannir",
-      required: true,
-    },
-    {
-      type: "STRING",
-      name: "raison",
-      description: "La raison du bannissement",
-      required: false,
-    },
-  ],
-  async run(interaction) {
+  data: new SlashCommandBuilder()
+    .setName("ban")
+    .setDescription("Ban un membre")
+    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+    .addUserOption((option) =>
+      option
+        .setName("membre")
+        .setDescription("Le membre à bannir")
+        .setRequired(true)
+    )
+    .addStringOption((option) =>
+      option
+        .setName("raison")
+        .setDescription("La raison du bannissement")
+        .setRequired(false)
+    ),
+  async execute(interaction) {
     const member = interaction.options.getMember("membre");
     const reason =
       interaction.options.getString("raison") || "Pas de raison fournie";

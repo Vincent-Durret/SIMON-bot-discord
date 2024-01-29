@@ -1,22 +1,22 @@
+const { SlashCommandBuilder } = require("discord.js");
+
 module.exports = {
-  name: "verify",
-  description: "Vérifiez votre compte",
-  options: [
-    {
-      type: "STRING",
-      name: "platform",
-      description: "Votre plateforme de jeu",
-      required: true,
-      choices: [
-        { name: "PC", value: "PC" },
-        { name: "PS5", value: "PS5" },
-        { name: "XBOX", value: "XBOX" },
-      ],
-    },
-  ],
-  async run(interaction) {
+  data: new SlashCommandBuilder()
+    .setName("verify")
+    .setDescription("Vérifiez votre compte")
+    .addStringOption((option) =>
+      option
+        .setName("platform")
+        .setDescription("Votre plateforme de jeu")
+        .setRequired(true)
+        .addChoice("PC", "PC")
+        .addChoice("PS5", "PS5")
+        .addChoice("XBOX", "XBOX")
+    ),
+  async execute(interaction) {
     const platform = interaction.options.getString("platform");
-    const roleName = platform.toUpperCase(); // Ici, le nom du rôle est supposé être le même que la plateforme
+    const roleName = platform.toUpperCase();
+    // La logique de vérification reste la même
     const role = interaction.guild.roles.cache.find((r) => r.name === roleName);
 
     if (!role) {

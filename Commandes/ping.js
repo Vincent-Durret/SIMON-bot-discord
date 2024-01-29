@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
 
 module.exports = {
-  name: "ping",
-  description: "Affiche la latence",
-  permission: "Aucune",
-  dm: true,
+  data: new Discord.SlashCommandBuilder()
+  .setName("ping")
+  .setDescription("Affiche la latence")
+  setDefaultMemberPermissions("aucune")
 
-  async run(bot, interaction, args) {
+  async execute(bot, interaction, args) {
     await interaction.reply(`Ping : \`${bot.ws.ping}\``);
   },
 };
