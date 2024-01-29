@@ -5,7 +5,7 @@ const {
   Events,
   Collection,
 } = require("discord.js");
-// require("dotenv").config();
+require("dotenv").config();
 const { Captcha } = require("discord.js-captcha");
 const newMemberHandler = require("./security/newMemberHandler.js");
 const reactionHandler = require("./Reaction/reactionHandler");

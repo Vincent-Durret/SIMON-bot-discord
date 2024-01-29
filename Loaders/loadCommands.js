@@ -6,13 +6,14 @@ module.exports = async (bot) => {
     .forEach(async (file) => {
       let command = require(`../Commandes/${file}`);
 
-      if (!command.name || typeof command.name !== "string")
-        throw new TypeError(
-          `La commande ${file.slice(0, file.length - 3)} n'a pas de nom !`
-        );
+      // Utilisez command.data.name pour les commandes slash
+      let commandName = command.data ? command.data.name : command.name;
 
-      bot.commands.set(command.name, command);
+      if (!commandName)
+        throw new TypeError(`La commande ${file} n'a pas de nom !`);
 
-      console.log(`Commande ${file} chargée avec succès ! `);
+      bot.commands.set(commandName, command);
+
+      console.log(`Commande ${commandName} chargée avec succès ! `);
     });
 };

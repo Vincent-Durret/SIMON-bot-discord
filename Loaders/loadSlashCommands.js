@@ -7,9 +7,9 @@ module.exports = async (bot) => {
 
   bot.commands.forEach(async (command) => {
     let slashCommand = new Discord.SlashCommandBuilder()
-      .setName(command.name)
-      .setDescription(command.description)
-      .setDMPermission(command.dm)
+      .setName(command.data.name)
+      .setDescription(command.data.description)
+      .setDMPermission(command.data.dm)
       .setDefaultMemberPermissions(
         command.permission === "Aucune" ? null : command.permission
       );
