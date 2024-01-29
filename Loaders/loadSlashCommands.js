@@ -11,7 +11,7 @@ module.exports = async (bot) => {
       .setDescription(command.data.description)
       .setDMPermission(command.data.dm)
       .setDefaultMemberPermissions(
-        command.permission === "Aucune" ? null : command.permission
+        command.permission === "Aucune" ? null : command.data.permission
       );
 
     if (command.options?.length >= 1) {

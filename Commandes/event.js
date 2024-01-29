@@ -29,7 +29,7 @@ module.exports = {
         .setDescription("Description de l'événement")
         .setRequired(false)
     ),
-  async execute(interaction) {
+  async run(interaction) {
     const titre = interaction.options.getString("titre");
     const date = interaction.options.getString("date");
     const heure = interaction.options.getString("heure");

@@ -17,7 +17,7 @@ module.exports = {
         .setDescription("La raison du bannissement")
         .setRequired(false)
     ),
-  async execute(interaction) {
+  async run(interaction) {
     const member = interaction.options.getMember("membre");
     const reason =
       interaction.options.getString("raison") || "Pas de raison fournie";
