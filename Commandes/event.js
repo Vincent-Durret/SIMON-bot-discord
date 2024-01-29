@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -19,6 +20,15 @@ module.exports = {
   async execute(interaction) {
     const description = interaction.options.getString("description");
     const date = interaction.options.getString("date");
-    // Logique pour enregistrer l'événement et envoyer un message
+
+    // Logique pour gérer la création de l'événement
+    // ...
+
+    await interaction.reply({
+      content: `Événement créé pour ${date}: ${description}`,
+      ephemeral: true,
+    });
   },
+  permission: PermissionFlagsBits.ManageEvents, // ou une autre permission selon vos besoins
+  dm: false,
 };
