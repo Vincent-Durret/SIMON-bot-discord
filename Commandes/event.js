@@ -56,7 +56,7 @@ module.exports = {
         description: description,
         scheduledStartTime: startAt,
         privacyLevel: 2,
-        entityType: 1, // ou 'VOICE'
+        entityType: "VOICE", // ou 'VOICE'
         channelId: "1185350340980256899", // Remplacez ceci par l'ID du canal vocal où l'événement doit se dérouler
       });
 
