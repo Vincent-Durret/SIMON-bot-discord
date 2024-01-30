@@ -45,7 +45,7 @@ module.exports = {
       name: titre,
       description: description,
       scheduledStartTime: startAt,
-      privacyLevel: "GUILD_ONLY",
+      privacyLevel: 2,
       entityType: 1, // ou 'VOICE'
       channel: "1185350340980256899", // Remplacez ceci par l'ID du canal vocal où l'événement doit se dérouler
     });
