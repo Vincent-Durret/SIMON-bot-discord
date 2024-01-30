@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { PermissionFlagsBits } = require("discord.js");
+const { joinVoiceChannel } = require("@discordjs/voice");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -41,14 +42,19 @@ module.exports = {
       date && heure && !isNaN(Date.parse(`${date}T${heure}:00`));
 
     if (!dateIsValid) {
-      // Répondre à l'interaction
       await interaction.reply({
         content: "La date ou l'heure fournie est invalide.",
         ephemeral: true,
       });
     } else {
-      // Convertir la date et l'heure en un objet Date JavaScript
       const startAt = new Date(`${date}T${heure}:00`);
+
+      // Rejoindre le canal vocal
+      const connection = joinVoiceChannel({
+        channelId: "1185350340980256899", // Remplacez ceci par l'ID du canal vocal où l'événement doit se dérouler
+        guildId: interaction.guild.id,
+        adapterCreator: interaction.guild.voiceAdapterCreator,
+      });
 
       // Créer l'événement
       await interaction.guild.scheduledEvents.create({
@@ -56,17 +62,15 @@ module.exports = {
         description: description,
         scheduledStartTime: startAt,
         privacyLevel: 2,
-        entityType: "VOICE", // ou 'VOICE'
+        entityType: "VOICE",
         channelId: "1185350340980256899", // Remplacez ceci par l'ID du canal vocal où l'événement doit se dérouler
       });
 
-      // Répondre à l'interaction
       await interaction.reply({
         content: `Événement créé: ${titre} le ${date} à ${heure}`,
         ephemeral: true,
       });
 
-      // Envoyer un message de suivi
       await interaction.followUp({
         content: "Voici un message de suivi.",
         ephemeral: true,
