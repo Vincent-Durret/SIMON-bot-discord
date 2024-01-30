@@ -41,33 +41,36 @@ module.exports = {
       date && heure && !isNaN(Date.parse(`${date}T${heure}:00`));
 
     if (!dateIsValid) {
-      return interaction.reply({
+      // Répondre à l'interaction
+      await interaction.reply({
         content: "La date ou l'heure fournie est invalide.",
         ephemeral: true,
       });
+    } else {
+      // Convertir la date et l'heure en un objet Date JavaScript
+      const startAt = new Date(`${date}T${heure}:00`);
+
+      // Créer l'événement
+      await interaction.guild.scheduledEvents.create({
+        name: titre,
+        description: description,
+        scheduledStartTime: startAt,
+        privacyLevel: 2,
+        entityType: 1, // ou 'VOICE'
+        channel_id: "1185303156016545933", // Remplacez ceci par l'ID du canal vocal où l'événement doit se dérouler
+      });
+
+      // Répondre à l'interaction
+      await interaction.reply({
+        content: `Événement créé: ${titre} le ${date} à ${heure}`,
+        ephemeral: true,
+      });
+
+      // Envoyer un message de suivi
+      await interaction.followUp({
+        content: "Voici un message de suivi.",
+        ephemeral: true,
+      });
     }
-
-    await interaction.followUp({
-      content: "Voici un message de suivi.",
-      ephemeral: true,
-    });
-
-    // Convertir la date et l'heure en un objet Date JavaScript
-    const startAt = new Date(`${date}T${heure}:00`);
-
-    // Créer l'événement
-    await interaction.guild.scheduledEvents.create({
-      name: titre,
-      description: description,
-      scheduledStartTime: startAt,
-      privacyLevel: 2,
-      entityType: 1, // ou 'VOICE'
-      channel_id: "1185303156016545933", // Remplacez ceci par l'ID du canal vocal où l'événement doit se dérouler
-    });
-
-    await interaction.reply({
-      content: `Événement créé: ${titre} le ${date} à ${heure}`,
-      ephemeral: true,
-    });
   },
 };
