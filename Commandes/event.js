@@ -47,6 +47,11 @@ module.exports = {
       });
     }
 
+    await interaction.followUp({
+      content: "Voici un message de suivi.",
+      ephemeral: true,
+    });
+
     // Convertir la date et l'heure en un objet Date JavaScript
     const startAt = new Date(`${date}T${heure}:00`);
 
