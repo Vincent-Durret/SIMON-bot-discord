@@ -37,6 +37,16 @@ module.exports = {
       interaction.options.getString("description") ||
       "Pas de description fournie";
 
+    const dateIsValid =
+      date && heure && !isNaN(Date.parse(`${date}T${heure}:00`));
+
+    if (!dateIsValid) {
+      return interaction.reply({
+        content: "La date ou l'heure fournie est invalide.",
+        ephemeral: true,
+      });
+    }
+
     // Convertir la date et l'heure en un objet Date JavaScript
     const startAt = new Date(`${date}T${heure}:00`);
 
