@@ -9,7 +9,7 @@ module.exports = async (bot) => {
     let slashCommand = new Discord.SlashCommandBuilder()
       .setName(command.data.name)
       .setDescription(command.data.description)
-      .setDMPermission(command.data.dm)
+      .setDefaultPermission(command.data.dm ?? true)
       .setDefaultMemberPermissions(
         command.permission === "Aucune" ? null : command.data.permission
       );
@@ -18,6 +18,7 @@ module.exports = async (bot) => {
       for (let option of command.data.options) {
         switch (option.type) {
           case "STRING":
+          case 3:
             slashCommand.addStringOption((opt) =>
               opt
                 .setName(option.name)
@@ -42,6 +43,7 @@ module.exports = async (bot) => {
             );
             break;
           case "USER":
+          case 6:
             slashCommand.addUserOption((opt) =>
               opt
                 .setName(option.name)
@@ -55,7 +57,7 @@ module.exports = async (bot) => {
         }
       }
     }
-    commands.push(slashCommand);
+    commands.push(slashCommand.toJSON());
   });
 
   const rest = new REST({ version: "10" }).setToken(bot.token);
