@@ -37,8 +37,16 @@ module.exports = {
       interaction.options.getString("description") ||
       "Pas de description fournie";
 
-    // Logique pour créer l'événement
-    // ...
+    // Convertir la date et l'heure en un objet Date JavaScript
+    const startAt = new Date(`${date}T${heure}:00`);
+
+    // Créer l'événement
+    await interaction.guild.events.create({
+      name: titre,
+      description: description,
+      startAt: startAt,
+      privacyLevel: "GUILD_ONLY",
+    });
 
     await interaction.reply({
       content: `Événement créé: ${titre} le ${date} à ${heure}`,
