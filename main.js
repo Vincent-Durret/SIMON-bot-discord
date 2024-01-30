@@ -24,6 +24,7 @@ const bot = new Client({
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.GuildScheduledEvents,
   ],
 });
 
