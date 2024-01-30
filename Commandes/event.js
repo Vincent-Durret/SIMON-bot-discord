@@ -41,10 +41,10 @@ module.exports = {
     const startAt = new Date(`${date}T${heure}:00`);
 
     // Créer l'événement
-    await interaction.guild.events.create({
+    await interaction.guild.scheduledEvents.create({
       name: titre,
       description: description,
-      startAt: startAt,
+      scheduledStartTime: startAt,
       privacyLevel: "GUILD_ONLY",
     });
 
